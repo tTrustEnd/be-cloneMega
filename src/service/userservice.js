@@ -1,4 +1,5 @@
 const User = require('../model/user')
+const apq = require('api-query-params')
 module.exports = {
     createUserSV: async (data) => {
         try {
@@ -10,11 +11,13 @@ module.exports = {
         }
     },
     getAllUserSV: async (queryString) => {
+        let {filter,sort} = apq(queryString)
+        delete filter.page
         let { limit, page } = queryString;
         try {
             if (queryString) {
                 let offset = (page - 1) * limit
-                let result = await User.find({}).skip(offset).limit(limit).exec();
+                let result = await User.find(filter).skip(offset).limit(limit).sort(sort).exec();
                 return result
             }
             else {
@@ -34,8 +37,7 @@ module.exports = {
             console.log('error:', error)
         }
     },
-    updateAUserSV: async (data) => {
-        console.log(data)
+    changePassSV: async (data) => {
         let userUpdate = await User.find({ _id: data.id })
         try {
             if(userUpdate[0].password === data.password){
@@ -43,6 +45,14 @@ module.exports = {
                 return result
             }
         } catch (error) {   
+            console.log('error:', error)
+        }
+    },
+    updateUserSV:async (data) => {
+        try {
+            let result = User.updateOne({_id:data.id},{name:data.name,phone:data.phone,role:data.role,email:data.email});
+            return result
+        } catch (error) {
             console.log('error:', error)
         }
     }

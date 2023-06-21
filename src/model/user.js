@@ -23,8 +23,6 @@ const UserSchema = new Schema({
         type:String,
         default:'user'
     },
-
-  
     name:String,
     phone:String,
     // image:{  type: mongoose.ObjectId,ref: 'Image'}

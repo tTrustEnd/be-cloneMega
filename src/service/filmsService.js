@@ -3,12 +3,12 @@ const Film = require('../model/films')
 
 module.exports = {
     getFilmsSV: async (queryString) => {
-        const { filter, page, limit } = aqp(queryString)
+        const { filter, page, limit,sort } = aqp(queryString)
         delete filter.page;
         let offset = (page - 1) * limit
         try {
-            if (queryString) {
-                let result = await Film.find(filter).skip(offset).limit(limit);
+            if (queryString != undefined) {
+                let result = await Film.find(filter).skip(offset).limit(limit).sort(sort);
                 return result;
             } else {
                 let result = await Film.find({});
@@ -33,6 +33,7 @@ module.exports = {
         }
     },
     updateFilmSV: async (data) => {
+        console.log(data)
         try {
             if (data) {
                 let result = Film.updateOne({ _id: data.id }, data.dataUpdate)

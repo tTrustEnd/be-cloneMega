@@ -22,7 +22,7 @@ module.exports = {
         })
     },
     deleteFilms: async (req, res) => {
-        let result = await deleteFilmSV(req.body.id)
+        let result = await deleteFilmSV(req.query.id)
         return res.status(200).json({
             EC:0,
             data:result
