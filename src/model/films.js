@@ -12,7 +12,8 @@ const FilmSchema = new Schema({
     actor:String,
     sumary:String,
     sub:String,
-    image:String
+    image:String,
+    trailer:String,
 },
 {
     timestamps:true

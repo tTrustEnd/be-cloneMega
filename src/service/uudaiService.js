@@ -1,32 +1,36 @@
 const aqp = require('api-query-params');
-const Film = require('../model/films')
+const Uudai = require('../model/uudai')
 
 module.exports = {
-    getFilmsSV: async (queryString) => {
+    getUudaiSV: async (queryString) => {
         const { filter, page, limit,sort } = aqp(queryString)
         delete filter.page;
         let offset = (queryString.page - 1) * limit
         try {
             if (queryString != undefined) {
-                let result = await Film.find(filter).skip(offset).limit(limit).sort(sort);
+                let result = await Uudai.find(filter).skip(offset).limit(limit).sort(sort);
                 return result;
             } else {
-                let result = await Film.find({});
+                let result = await Uudai.find({});
                 return result;
             }
         } catch (error) {
             console.log('>>>error:', error)
         }
     },
-    createFilmsSV: async (dataFilm) => {
+    createUudaiSV: async (dataFilm) => {
         try {
-            if (dataFilm) {
+            if (dataFilm && dataFilm.length > 0) {
                 let result = [];
                 for (let i = 0; i < dataFilm.length; i++) {
-                    let res = await Film.create(dataFilm[i]);
+                    let res = await Uudai.create(dataFilm[i]);
                     result.push(res)
                 }
                 return result;
+            }
+            else{
+                let res = await Uudai.create(dataFilm);
+                return res
             }
         } catch (error) {
             console.log('>>>error:', error)

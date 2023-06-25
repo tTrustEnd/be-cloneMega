@@ -11,6 +11,8 @@ const port = process.env.PORT;
 const configStatic = require('./config/static');
 const routerUser = require('./routes/user');
 const routerFilms = require('./routes/films');
+const routerUudai = require('./routes/uudai');
+
 
 // const mongoose = require('mongoose');
 // mongoose.connect('mongodb+srv://root:5ALUF5no5iqaP9dM@cluster0.gwlf8ij.mongodb.net/?retryWrites=true&w=majority')
@@ -37,6 +39,8 @@ app.get('/', (req, res) => {
 
 app.use('/v1/api',routerUser);
 app.use('/v2/api',routerFilms);
+app.use('/v3/api',routerUudai);
+
 
 
 (async()=>{
