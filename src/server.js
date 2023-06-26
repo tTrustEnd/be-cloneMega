@@ -23,7 +23,11 @@ app.use(fileUpload());
 configStatic(app)
 //config req.body 
 
-
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 app.use(cors({
   origin: '*'
 }));
@@ -37,15 +41,15 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.use('/v1/api',routerUser);
-app.use('/v2/api',routerFilms);
-app.use('/v3/api',routerUudai);
+app.use('/v1/api', routerUser);
+app.use('/v2/api', routerFilms);
+app.use('/v3/api', routerUudai);
 
 
 
-(async()=>{
-   await connection()
-  app.listen(port, async() => {
+(async () => {
+  await connection()
+  app.listen(port, async () => {
     console.log(`Example app listening on port ${port}`)
   })
 })()
