@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const ChairSchema = new Schema({
     name: String,
     price: Number,
+    quantity:Number
 },
     {
         timestamps: true

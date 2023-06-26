@@ -1,5 +1,5 @@
 const Chair = require("../model/chair")
-const { createChairSV } = require("../service/chairService")
+const { createChairSV,updateChairSV } = require("../service/chairService")
 
 module.exports = {
     createChair: async (req, res) => {
@@ -14,6 +14,13 @@ module.exports = {
         return res.status(200).json({
             EC:0,
             data:result
+        })
+    },
+    updateChair: async (req, res) => {
+        let results = await updateChairSV(req.body)
+        return res.status(200).json({
+            EC:0,
+            data:results
         })
     }
 }

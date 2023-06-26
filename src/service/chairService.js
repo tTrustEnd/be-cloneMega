@@ -10,5 +10,19 @@ module.exports = {
         } catch (error) {
             console.log('error>>>:',error)
         }
+    },
+    updateChairSV: async (data) => {
+        try {
+            if( data && data.id){
+                let results = await Chair.updateOne({_id:data.id},{quantity:data.quantity})
+                return results
+            }
+            else{
+                let results = await Chair.updateMany({},{quantity:0})
+                return results
+            }
+        } catch (error) {
+            console.log('error>>>:',error)
+        }
     }
 }
