@@ -22,13 +22,11 @@ const routerUudai = require('./routes/uudai');
 app.use(fileUpload());
 configStatic(app)
 //config req.body 
-const corsOptions ={
-    origin:['https://fe-clone-mega.vercel.app','http://localhost:3000','https://clone-megagscinemas.truongnguyen.click'],
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
 
-app.use(cors(corsOptions));
+
+app.use(cors({
+  origin: '*'
+}));
 
 
 app.use(bodyParser.json());
