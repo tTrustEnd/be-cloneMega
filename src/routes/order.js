@@ -32,7 +32,7 @@ router.get('/refund', function (req, res, next) {
 });
 
 
-router.post('/  ', function (req, res, next) {
+router.post('/create_payment_url', function (req, res, next) {
     
     process.env.TZ = 'Asia/Ho_Chi_Minh';
     
