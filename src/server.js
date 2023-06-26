@@ -16,6 +16,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var order = require('./routes/order');
+const routerChair = require('./routes/chair');
 
 // const mongoose = require('mongoose');
 // mongoose.connect('mongodb+srv://root:5ALUF5no5iqaP9dM@cluster0.gwlf8ij.mongodb.net/?retryWrites=true&w=majority')
@@ -43,6 +44,7 @@ app.get('/', (req, res) => {
 app.use('/v1/api', routerUser);
 app.use('/v2/api', routerFilms);
 app.use('/v3/api', routerUudai);
+app.use('/v4/api', routerChair);
 
 // VNP
 app.set('views', path.join(__dirname, 'views'));
