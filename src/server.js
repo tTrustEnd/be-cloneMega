@@ -22,10 +22,10 @@ const routerUudai = require('./routes/uudai');
 app.use(fileUpload());
 configStatic(app)
 //config req.body 
-const corsOptions ={
-    origin:'http://localhost:3000',
-    credentials:false,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200
 }
 app.use(cors(corsOptions));
 
@@ -37,15 +37,15 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.use('/v1/api',routerUser);
-app.use('/v2/api',routerFilms);
-app.use('/v3/api',routerUudai);
+app.use('/v1/api', routerUser);
+app.use('/v2/api', routerFilms);
+app.use('/v3/api', routerUudai);
 
 
 
-(async()=>{
-   await connection()
-  app.listen(port, async() => {
+(async () => {
+  await connection()
+  app.listen(port, async () => {
     console.log(`Example app listening on port ${port}`)
   })
 })()
