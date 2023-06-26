@@ -23,7 +23,7 @@ app.use(fileUpload());
 configStatic(app)
 //config req.body 
 const corsOptions ={
-    origin:'*',
+    origin:['https://fe-clone-mega.vercel.app','http://localhost:3000'],
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
