@@ -22,21 +22,23 @@ const routerUudai = require('./routes/uudai');
 app.use(fileUpload());
 configStatic(app)
 //config req.body 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 const corsOptions ={
     origin:['http://localhost:3000','https://clone-megagscinemas.truongnguyen.click','https://clone-megagscinemas.truongnguyen.click/phim'],
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200,
 }
 
+
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 // Cấu hình CORS middleware
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
+
 
 // Các tuyến đường và xử lý yêu cầu khác...
 
