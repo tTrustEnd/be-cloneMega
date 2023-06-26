@@ -24,6 +24,7 @@ configStatic(app)
 //config req.body 
 const corsOptions ={
     origin:'http://localhost:3000', 
+    origin:'https://fe-clone-mega-ic16-te5f9geag-ttrustend.vercel.app/', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
