@@ -24,7 +24,6 @@ configStatic(app)
 //config req.body 
 
 app.use(cors());
-app.options('*', cors());
 app.use(function(req, res, next) {
   var oneof = false;
   if(req.headers.origin) {
