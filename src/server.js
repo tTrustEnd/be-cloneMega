@@ -31,6 +31,15 @@ const corsOptions ={
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
+// Cấu hình CORS middleware
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Hoặc thay '*' bằng origin cụ thể nếu bạn chỉ muốn cho phép từ một số nguồn cụ thể.
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+// Các tuyến đường và xử lý yêu cầu khác...
 
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
