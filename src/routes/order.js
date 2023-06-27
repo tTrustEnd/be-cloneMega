@@ -16,7 +16,8 @@ router.get('/', function(req, res, next){
 });
 
 router.get('/create_payment_url', function (req, res, next) {
-    res.render('order', {title: 'Tạo mới đơn hàng', amount: 10000})
+    console.log(req.query)
+    res.render('order', {title: 'Tạo mới đơn hàng', amount:req.query.amount  })
 });
 
 router.get('/querydr', function (req, res, next) {
