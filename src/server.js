@@ -27,10 +27,9 @@ app.use(fileUpload());
 configStatic(app)
 //config req.body 
 const corsOptions = {
-  origi: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204
+  origin: true,
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200
 }
 app.use(cors(corsOptions));
 
