@@ -27,9 +27,10 @@ app.use(fileUpload());
 configStatic(app)
 //config req.body 
 const corsOptions = {
-  origin: ['http://localhost:3000','https://clone-megagscinemas.truongnguyen.click'],
-  credentials: true,            //access-control-allow-credentials:true
-  optionSuccessStatus: 200
+  origi: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 }
 app.use(cors(corsOptions));
 
