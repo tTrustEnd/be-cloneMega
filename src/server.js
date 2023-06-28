@@ -29,7 +29,9 @@ configStatic(app)
 const corsOptions = {
   origin: true,
   credentials: true,            //access-control-allow-credentials:true
-  optionSuccessStatus: 200
+  optionSuccessStatus: 200,
+  methods: 'GET,PUT,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization'
 }
 app.use(cors(corsOptions));
 
