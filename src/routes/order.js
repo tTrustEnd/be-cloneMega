@@ -34,9 +34,8 @@ router.get('/refund', function (req, res, next) {
 
 
 router.post('/create_payment_url', function (req, res, next) {
-    
+    console.log(req.body)
     process.env.TZ = 'Asia/Ho_Chi_Minh';
-    
     let date = new Date();
     let createDate = moment(date).format('YYYYMMDDHHmmss');
     
