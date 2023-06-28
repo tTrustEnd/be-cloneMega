@@ -9,6 +9,8 @@ let router = express.Router();
 let $ = require('jquery');
 const request = require('request');
 const moment = require('moment');
+const { await } = require('await');
+const Link = require('../model/linkpay');
 
 
 router.get('/', function(req, res, next){
@@ -16,7 +18,6 @@ router.get('/', function(req, res, next){
 });
 
 router.get('/create_payment_url', function (req, res, next) {
-    console.log(req.query)
     res.render('order', {title: 'Tạo mới đơn hàng', amount:req.query.amount  })
 });
 
@@ -33,8 +34,9 @@ router.get('/refund', function (req, res, next) {
 });
 
 
-router.post('/create_payment_url', function (req, res, next) {
+router.post('/create_payment_url',  async(req, res, next) => {
     console.log(req.body)
+    
     process.env.TZ = 'Asia/Ho_Chi_Minh';
     let date = new Date();
     let createDate = moment(date).format('YYYYMMDDHHmmss');
@@ -77,7 +79,6 @@ router.post('/create_payment_url', function (req, res, next) {
     }
 
     vnp_Params = sortObject(vnp_Params);
-
     let querystring = require('qs');
     let signData = querystring.stringify(vnp_Params, { encode: false });
     let crypto = require("crypto");     
@@ -85,7 +86,7 @@ router.post('/create_payment_url', function (req, res, next) {
     let signed = hmac.update(new Buffer(signData, 'utf-8')).digest("hex"); 
     vnp_Params['vnp_SecureHash'] = signed;
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
-
+    await Link.create({name:vnpUrl})
     res.redirect(vnpUrl)
 });
 
