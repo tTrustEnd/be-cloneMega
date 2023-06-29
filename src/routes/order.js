@@ -113,9 +113,9 @@ router.get('/vnpay_return', function (req, res, next) {
     if(secureHash === signed){
         //Kiem tra xem du lieu trong db co hop le hay khong va thong bao ket qua
 
-        res.render('success', {code: vnp_Params['vnp_ResponseCode']})
+        res.redirect    ('https://clone-megagscinemas.truongnguyen.click/success')
     } else{
-        res.render('success', {code: '97'})
+        res.redirect('https://clone-megagscinemas.truongnguyen.click/failed')
     }
 });
 
