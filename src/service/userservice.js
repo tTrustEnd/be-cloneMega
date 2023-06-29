@@ -1,10 +1,19 @@
+const { await } = require('await')
 const User = require('../model/user')
 const apq = require('api-query-params')
 module.exports = {
     createUserSV: async (data) => {
+        console.log('check data',data)
         try {
-            let result = await User.create(data)
-            return result
+            let checkEmail = await User.find({email:data.email})
+            if(checkEmail && checkEmail.length > 0){
+                return "Email đã tồn tại rồi bạn ơi!"
+            }
+            else {
+                let result = await User.create(data)
+                return result
+            }
+       
         } catch (error) {
             console.log('error:', error);
             return null

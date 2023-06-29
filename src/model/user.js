@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 var mongoose_delete = require('mongoose-delete');
 const { type } = require('os');
-const Schema = mongoose.Schema;
 const Joi = require('joi');
 
-// <-- EDIT: missing in the original post
+const Schema = mongoose.Schema; // <-- EDIT: missing in the original post
 // const ImageSchema = new Schema({
 //     img: { 
 //         data: Buffer, 
@@ -14,7 +13,10 @@ const Joi = require('joi');
 // })
 // const Image = mongoose.model("Image", ImageSchema);
 const UserSchema = new Schema({
-    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
+    email: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: true
@@ -23,7 +25,10 @@ const UserSchema = new Schema({
         type:String,
         default:'user'
     },
-    name:String,
+    name:{
+        type: String,
+        required: true
+    },
     phone:String,
     // image:{  type: mongoose.ObjectId,ref: 'Image'}
 }
